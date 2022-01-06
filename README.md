@@ -2,6 +2,7 @@
 
 * from the Zeeguu project
 * in SQL format
+* some [example SQL queries](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/tools/sql)
 
 
 
