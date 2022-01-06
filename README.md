@@ -1,1 +1,30 @@
-# DB-Dumps
+# Anonymized Database Dumps
+
+* from the Zeeguu project
+* in SQL format
+
+
+
+## Main tables
+
+* **user** - info about a user 
+* **article** - info about an article, including fk_difficulty - the difficulty that's presented in the UI; language 
+* **bookmark** - a word or group of words that has been translated by a user in an article together with the time when it was translated
+* **user\_activity\_data** - logs events relevant for understanding users interaction with texts and exercises (and the platform in general)
+	* interactions in the article reader are prefixed with UMR (e.g. UMR - TRANSLATE TEXT); * **user\_reading\_session** - computed based on user activity data; duration is in ms; sessions are closed if a user does not interact with a text for 2min
+* 
+
+
+## Version Details
+
+### 2021-01-06
+
+* 497 users active in more than 10 distinct days in 2021
+* 1097 users active in more than 10 distinct days since 2016
+* removed anonymous accounts
+* special user ids: 
+	* 534 - dev - used with multiple languages (learning mainly german)
+	* 2953 - dev - learning mainly danish
+* there seems to be a bug where TRANSLATE TEXT does not have the translated text for more recent entries; this should not be a problem because the information should be retrievable from the bookmark table
+
+
