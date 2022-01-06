@@ -11,8 +11,10 @@
 * **article** - info about an article, including fk_difficulty - the difficulty that's presented in the UI; language 
 * **bookmark** - a word or group of words that has been translated by a user in an article together with the time when it was translated
 * **user\_activity\_data** - logs events relevant for understanding users interaction with texts and exercises (and the platform in general)
-	* interactions in the article reader are prefixed with UMR (e.g. UMR - TRANSLATE TEXT); * **user\_reading\_session** - computed based on user activity data; duration is in ms; sessions are closed if a user does not interact with a text for 2min
-* 
+	* interactions in the article reader are prefixed with UMR (e.g. UMR - TRANSLATE TEXT);
+
+* **user\_reading\_session** - duration of a continuous interaction wit the reader; duration is in ms; sessions are closed if a user does not interact with a text for 2min
+* **user\_exercise\_session** - same as reading session, but computed for exercises
 
 
 ## Version Details
