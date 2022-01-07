@@ -4,9 +4,6 @@ from zeeguu.core.model import User, UserActivityData
 def print_sorted_activity():
 	all_users = User.find_all()
 
-	# analyze only the last 100 users
-	all_users = all_users[-100:]
-
 	user_activity = {}
 	for user in all_users:
 		print(f"({user.id}) Analyzing {user.name}... ")
