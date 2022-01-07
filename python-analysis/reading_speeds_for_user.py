@@ -2,12 +2,23 @@
 # because we don't know whether the user really
 # fully read the article 
 
-from zeeguu.core.model import User, UserArticle, Language
-from zeeguu.core.model.user_activitiy_data import UserActivityData
+# strategies 
+# - analyze only 
+#   - articles that are liked
+#   - articles that have micro-sessions that last for more than X min
+
+ONLY_LIKED = True
+MIN_ART_DURATION = 180 # seconds
 
 USER_ID = 1911
 READING_LANGUAGE = 'nl'
 PRINT_DETAIL = False
+
+from zeeguu.core.model import User, UserArticle, Language
+from zeeguu.core.model.user_activitiy_data import UserActivityData
+
+
+
 
 def find_the_like_event(user, article):
     all_events = UserActivityData.find(user)
@@ -27,11 +38,13 @@ def print_sesssions_for(user, article, micro_sessions):
             print(f" - {session.start_time}, {session.duration / 1000},  {session.article.title}")
         total_time += session.duration / 1000
 
-    find_the_like_event(user, article)
+    if PRINT_DETAIL:
+        find_the_like_event(user, article)
     
     reading_speed = int (article.word_count * 60 / total_time)
 
-    print(f"{session.start_time.date()}, {reading_speed}, {article.word_count}, {total_time}, {article.url}")
+    if total_time > MIN_ART_DURATION: 
+        print(f"{session.start_time.date()}, {reading_speed}, {article.word_count}, {total_time}, {article.url}")
 
     if PRINT_DETAIL:
         print(f" Total time: {total_time/60}min")
