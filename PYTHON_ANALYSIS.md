@@ -6,8 +6,9 @@ This has been tested on OS X but should work on Linux too. It requires you to ha
 
 
 1. Clone this repo 
-	2. Import the DB into a local MySQL db
-	3. If you name the DB `zeeguu_test` and create a user `zeeguu_test` with the password `zeeguu_test` then you won't have to change any configuration later 
+
+	- Import the DB into a local MySQL db
+	- If you name the DB `zeeguu_test` and create a user `zeeguu_test` with the password `zeeguu_test` then you won't have to change any configuration later 
 
 1. Change to the `/python-analysis` folder 
 
