@@ -1,9 +1,9 @@
 ## How to Run Analysis Scripts in Python
 
-Prerequisites
-- Linux / OS X (this guide has been tested on OS X but should work on Linux too)
-- A MySQL DBMS 
-- Python 3.6+ 
+This has been tested on OS X but should work on Linux too. It requires you to have a local MySQL DBMS in which to import the DB dump in this repo. It also requires Python 3.6+ 
+
+
+
 
 1. Clone this repo 
 	2. Import the DB into a local MySQL db
