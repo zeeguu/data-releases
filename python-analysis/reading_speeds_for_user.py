@@ -3,11 +3,11 @@
 # fully read the article 
 
 # strategies 
-# - analyze only 
-#   - articles that are liked
+# - analyze 
+#   - only articles that are liked
 #   - articles that have micro-sessions that last for more than X min
 
-ONLY_LIKED = True
+STUDY_ONLY_LIKED = True
 MIN_ART_DURATION = 180 # seconds
 
 USER_ID = 1911
@@ -74,7 +74,7 @@ def print_reading_sessions():
         if not user_article:
             continue
 
-        if not user_article.liked:
+        if STUDY_ONLY_LIKED and not user_article.liked:
             # we're only looking at liked articles for now
             continue
 
