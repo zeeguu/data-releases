@@ -1,5 +1,10 @@
 ## How to Run Analysis Scripts in Python
 
+Prerequisites
+- Linux / OS X (this guide has been tested on OS X but should work on Linux too)
+- A MySQL DBMS 
+- Python 3.6+ 
+
 1. Clone this repo 
 	2. Import the DB into a local MySQL db
 	3. If you name the DB `zeeguu_test` and create a user `zeeguu_test` with the password `zeeguu_test` then you won't have to change any configuration later 
