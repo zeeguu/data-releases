@@ -1,3 +1,5 @@
 zeeguu-api
 zeeguu_env
 .vscode/
+.idea/
+__pycache__/

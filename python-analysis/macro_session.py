@@ -3,18 +3,17 @@
 # e.g. the one below for user 2465 and French
 #
 # *** De Saint-Malo à la Pointe du Raz, nos tables préférées en Bretagne
-# 
+#
 # 	Total time: 21.1min
 # 	Word count: 1438
 # 	Reading speed: 68 wpm
-# 
+#
 # 	Sessions:
 # 	2020-09-10 07:35:12, 1261.0s
 # 	2020-09-10 07:56:25, 3.0s
 
 
 class MacroSession(object):
-
     def __init__(self, user_article):
         self.sessions = []
         self.total_time = 0
@@ -27,6 +26,9 @@ class MacroSession(object):
         self.sessions.append(session)
         self.total_time += session.duration / 1000
         self.reading_speed = int(self.article.word_count * 60 / self.total_time)
+
+    def start_date(self):
+        return self.sessions[0].start_time.date()
 
     def print_details(self):
 
@@ -44,3 +46,8 @@ class MacroSession(object):
         for session in self.sessions:
             print(f"\t{session.start_time}, {session.duration / 1000}s")
         print(" ")
+
+    def print_summary(self):
+        print(
+            f"{self.start_date()}, {self.reading_speed}, {self.total_time}, {self.article.word_count}"
+        )

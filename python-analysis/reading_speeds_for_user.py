@@ -7,7 +7,6 @@
 #   - only articles that are liked (not a very good approach because there are users who might not use the like button)
 #   - only articles that were interacted with for more than a number seconds
 
-
 ANALYZE_ONLY_LIKED = False
 MIN_ART_DURATION_IN_SEC = 180
 
@@ -81,7 +80,9 @@ if __name__ == "__main__":
     macro_sessions = extract_macro_sessions_from_db(user, language_id)
     macro_sessions = filter_sessions(macro_sessions)
 
-    if PRINT_DETAIL:
-        for macro_session in macro_sessions:
+    for macro_session in macro_sessions:
+        if PRINT_DETAIL:
             macro_session.print_details()
             input("<Enter to continue>")
+        else:
+            macro_session.print_summary()
