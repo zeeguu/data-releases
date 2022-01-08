@@ -4,100 +4,137 @@
 
 # strategies 
 # - analyze 
-#   - only articles that are liked
-#   - articles that have micro-sessions that last for more than X min
+#   - only articles that are liked (not a very good approach because there are users who might not use the like button)
+#   - only articles that were interacted with for more than a number seconds
 
-STUDY_ONLY_LIKED = True
-MIN_ART_DURATION = 180 # seconds
 
-USER_ID = 1911
-READING_LANGUAGE = 'nl'
-PRINT_DETAIL = False
 
-from zeeguu.core.model import User, UserArticle, Language
+STUDY_ONLY_LIKED = False
+MIN_ART_DURATION_IN_SEC = 180
+
+
+USER_ID = 2465 
+# 1911
+# 2650 = impossibly high speeds
+
+READING_LANGUAGE = 'fr' #'nl'
+PRINT_DETAIL = True
+
+import math
+from collections import defaultdict
+
+from zeeguu.core.model import User, UserArticle, Language, user_reading_session
 from zeeguu.core.model.user_activitiy_data import UserActivityData
 
+
+class MacroSession(object):
+
+    def __init__(self):
+        self.sessions = []
+        self.total_time = 0
+
+    def append(self, session):
+        self.sessions.append(session)
+        self.total_time += session.duration / 1000
+
+    def items(self):
+        return self.sessions.items()
+
+    def print_details(self):
+        print("\tSessions: ")
+        for session in self.sessions:
+            print(f"\t{session.start_time}, {session.duration / 1000}s")
+        print(" ")
 
 
 
 def find_the_like_event(user, article):
-    all_events = UserActivityData.find(user)
-    all_events = [each for each in all_events if each.event == "UMR - LIKE ARTICLE" and each.article_id==article.id]
+    all_events = UserActivityData.find(user, article)
+    all_events = [each for each in all_events if each.event == "UMR - LIKE ARTICLE"]
     for each in all_events:
         if PRINT_DETAIL:
             print(f" - {each.time}: LIKE: {each.value}")
 
-def print_sesssions_for(user, article, micro_sessions):
 
-    if PRINT_DETAIL:
-        print(f"{article.title}")
+def print_sesssions_for_articles(user, article_macro_sessions):
 
-    total_time = 0
-    for session in micro_sessions[article]:
-        if PRINT_DETAIL:
-            print(f" - {session.start_time}, {session.duration / 1000},  {session.article.title}")
-        total_time += session.duration / 1000
+    for user_article in article_macro_sessions.keys():
+        article = user_article.article
+        macro_session = article_macro_sessions[user_article]
 
-    if PRINT_DETAIL:
-        find_the_like_event(user, article)
-    
-    reading_speed = int (article.word_count * 60 / total_time)
-
-    if total_time > MIN_ART_DURATION: 
-        print(f"{session.start_time.date()}, {reading_speed}, {article.word_count}, {total_time}, {article.url}")
-
-    if PRINT_DETAIL:
-        print(f" Total time: {total_time/60}min")
-        print(f" Word count: {article.word_count}")
-        print(f" Reading speed: {reading_speed} wpm")
-        input("continue...")
         
-    
+
+
+
+        
+        reading_speed = int (article.word_count * 60 / macro_session.total_time)
+
+
+        if PRINT_DETAIL:
+            
+            print(f"\n *** {article.title}\n")
+           
+            if user_article.liked:
+                print("\tLIKED!")            
+
+            print(f"\tTotal time: {round(macro_session.total_time/60,1)}min")
+            print(f"\tWord count: {article.word_count}")
+            print(f"\tReading speed: {reading_speed} wpm")
+            print("")
+            macro_session.print_details()
+            input("<Enter to continue>")
+            print("")
+        
+            
 
     
 
 
-def print_reading_sessions():
-    user = User.find_by_id(USER_ID)
+def macro_sessions_per_article(user, language_id):
 
-    german_id = Language.find(READING_LANGUAGE).id
+    # this is imprecise; there might be multiple
+    # macro sessions of the same article; 
+    # ... as a solution, we should only be 
+    # keeping the first macro reading session 
 
-
-    current_article = None
-
-    micro_sessions = {}
+    macro_sessions = defaultdict(MacroSession)
     
-    for session in user.all_reading_sessions(language_id=german_id):
+    for session in user.all_reading_sessions(language_id=language_id):
 
         user_article = UserArticle.find(user, session.article) 
         
         if not user_article:
             continue
 
-        if STUDY_ONLY_LIKED and not user_article.liked:
-            # we're only looking at liked articles for now
+        macro_sessions[user_article].append(session)
+
+    return macro_sessions
+
+
+
+
+def filter_sessions(macro_sessions):
+
+    result = {}
+    for ua, macro_session in macro_sessions.items():
+        
+        if STUDY_ONLY_LIKED and not ua.liked:
             continue
 
-        if not current_article:
-            # first session: simply set current article
-            current_article = session.article
-            micro_sessions[current_article] = []
-        else:
-            if current_article != session.article:
-                # encountered a new article; report on the prev and start a new one
-                if len(micro_sessions[current_article]) > 0:
-                    print_sesssions_for(user, current_article, micro_sessions)
-                current_article = session.article
-                micro_sessions[current_article] = []
-            else:
-                # add this session to the micro_session for current article
-                micro_sessions[current_article].append(session)
-               
+        if macro_session.total_time < MIN_ART_DURATION_IN_SEC:
+            continue
         
+        result[ua] = macro_session
+    return result
+ 
         
-
-        
-
 
 if __name__== "__main__":
-    print_reading_sessions()
+
+    user = User.find_by_id(USER_ID)
+    language_id = Language.find(READING_LANGUAGE).id
+    macro_sessions = macro_sessions_per_article(user, language_id)
+    macro_sessions = filter_sessions(macro_sessions)
+    print_sesssions_for_articles(user, macro_sessions)
+
+
