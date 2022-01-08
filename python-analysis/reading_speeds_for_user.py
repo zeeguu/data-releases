@@ -1,11 +1,15 @@
-# reading speed is difficult to compute
+# Reading speed is difficult to compute
 # because we don't know whether the user really
-# fully read the article
+# fully read the article or not
 
-# strategies
+# Strategies employed in this script
 # - analyze
 #   - only articles that are liked (not a very good approach because there are users who might not use the like button)
 #   - only articles that were interacted with for more than a number seconds
+
+# Some notes from testing with users:
+#  1911, nl = a large number of articles
+#  2650, fr = impossibly high speeds
 
 ANALYZE_ONLY_LIKED = False
 MIN_ART_DURATION_IN_SEC = 180
@@ -13,10 +17,7 @@ MIN_ART_DURATION_IN_SEC = 180
 PRINT_DETAIL = True
 
 USER_ID = 2465
-READING_LANGUAGE = "fr"  #'nl'
-
-# 1911
-# 2650, fr = impossibly high speeds
+READING_LANGUAGE = "fr"
 
 
 from zeeguu.core.model import User, UserArticle, Language
