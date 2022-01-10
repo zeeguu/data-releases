@@ -76,6 +76,10 @@ def extract_macro_sessions_from_db(user, language_id):
         if not user_article:
             continue
 
+        if session.duration < 1000:
+            # less than 1s is not a session
+            continue
+
         if not current_macro or session.article != current_macro.article:
             current_macro = MacroSession(user_article)
             macro_sessions.append(current_macro)
