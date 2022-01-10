@@ -17,19 +17,33 @@
 #   2020           70.0
 #   2021           84.0
 #
-#  534, de = a user who studied less and started being slower again?
+#  534, de = a user who stopped studying and started being slower again?
 #  all articles
-#   2018           56.5
-#   2019           60.0
-#   2020           49.0
-#   2021           37.0
-#  only LIKED articles
-#   2018           44.0
-#   2019           47.0
-#   2020           29.0
+#      reading_speed
+#              count       mean
+# year
+# 2018           208  67.432692
+# 2019            39  75.589744
+# 2020            12  53.000000
+# 2021             1  37.000000
 
+#  only LIKED articles
+# 2018            81  43.543210
+# 2019            14  48.928571
+# 2020             1  29.000000
 #  2650, fr = impossibly high speeds
-#  2465, fr = decrease in speed between 2020 and 2021...
+#  all articles
+#     76,5
+#  only LIKED
+#     74
+
+
+#  2465, fr, all (not sufficent LIKED) = decrease in speed between 2020 and 2021...
+#   2020             2  50.500000
+#   2021             6  41.166667# 2694, de
+# - only read in 2021
+# only liked:
+#     57.5
 
 
 # To think about... maybe the grouping should not be done by year,
@@ -46,8 +60,8 @@ MIN_ART_DURATION_IN_SEC = 180
 
 PRINT_DETAIL = False
 
-USER_ID = 1911
-READING_LANGUAGE = "nl"
+USER_ID = 534
+READING_LANGUAGE = "de"
 
 import pandas as pd
 from zeeguu.core.model import User, Language
@@ -98,7 +112,7 @@ def summarize_yearly_reading_speed(macro_sessions):
         & (year_and_speed["reading_speed"] > q_low)
     ]
 
-    print(df_filtered.groupby("year").median())
+    print(df_filtered.groupby("year").agg(["count", "mean"]))
 
 
 if __name__ == "__main__":
