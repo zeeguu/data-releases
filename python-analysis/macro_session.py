@@ -12,6 +12,8 @@
 # 	2020-09-10 07:35:12, 1261.0s
 # 	2020-09-10 07:56:25, 3.0s
 
+from zeeguu.core.model import UserActivityData, UserArticle
+
 
 class MacroSession(object):
     def __init__(self, user_article):
@@ -29,6 +31,9 @@ class MacroSession(object):
 
     def start_date(self):
         return self.sessions[0].start_time.date()
+
+    def year(self):
+        return self.start_date().year
 
     def print_details(self):
 
@@ -51,3 +56,36 @@ class MacroSession(object):
         print(
             f"{self.start_date()}, {self.reading_speed}, {self.total_time}, {self.article.word_count}"
         )
+
+
+def extract_macro_sessions_from_db(user, language_id):
+
+    # this is a bit imprecise; there might be multiple
+    # macro sessions of the same article;
+    # ... we should think about a solution for users
+    # that read the same article in multiple sessions
+
+    macro_sessions = []
+
+    current_macro = None
+
+    for session in user.all_reading_sessions(language_id=language_id):
+
+        user_article = UserArticle.find(user, session.article)
+
+        if not user_article:
+            continue
+
+        if not current_macro or session.article != current_macro.article:
+            current_macro = MacroSession(user_article)
+            macro_sessions.append(current_macro)
+
+        current_macro.append(session)
+
+    return macro_sessions
+
+
+def find_the_like_event(user, article):
+    all_events = UserActivityData.find(user, article)
+    like_events = [each for each in all_events if each.event == "UMR - LIKE ARTICLE"]
+    return like_events
