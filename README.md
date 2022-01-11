@@ -35,6 +35,10 @@
 * To analyze the data from Python using the `zeeguu.core.model` [API](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/zeeguu/core/model) see [PYTHON_README.md](./PYTHON_README.md). 
 
 
-
+## Importing the DB dump on a Mac with Mysql Installed
+````
+unzip zeeguu_anonymized-2021-01-06.sql.zip
+mysql -uroot -p -h localhost zeeguu_test < zeeguu_anonymized-2021-01-06.sql
+````
 
 
