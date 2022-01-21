@@ -41,4 +41,9 @@ unzip zeeguu_anonymized-2021-01-06.sql.zip
 mysql -uroot -p -h localhost zeeguu_test < zeeguu_anonymized-2021-01-06.sql
 ````
 
+## Set environment variable to config file
+````
+export ZEEGUU_CONFIG=./zeeguu-api/default_api.cfg
+````
+
 
