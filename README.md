@@ -32,7 +32,7 @@
 ## How to use
 
 * Import to a local MySQL DB, and run queries on it. Some example SQL queries are available [in the Zeeguu-API repository](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/tools/sql)
-* To analyze the data from Python using the `zeeguu.core.model` [API](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/zeeguu/core/model) see [PYTHON_README.md](./PYTHON_README.md). 
+* To analyze the data from Python using the `zeeguu.core.model` [API](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/zeeguu/core/model) see [PYTHON_ANALYSIS.md](./PYTHON_ANALYSIS.md). 
 
 
 ## Importing the DB dump on a Mac with Mysql Installed
