@@ -25,7 +25,8 @@
 * **user\_activity\_data** - logs events relevant for understanding users interaction with texts and exercises (and the platform in general)
 	* interactions in the article reader are prefixed with UMR (e.g. UMR - TRANSLATE TEXT);
 
-* **user\_reading\_session** - duration of a continuous interaction wit the reader; duration is in ms; sessions are closed if a user does not interact with a text for 2min
+* **user\_reading\_session** - this is our attempt at inferring the time spent while reading an article; the current implementation takes as input events that suggest [user interactions](https://github.com/zeeguu-ecosystem/zeeguu-api/blob/master/zeeguu/core/model/user_reading_session.py) with the article (article open, translation, speech, scroll, mouse move, etc.) and as long as the user is active, considers the user involved in a **reading session**. There is a timeout of 2min: if the user did not interact with the article in the reader for 2min, the session is closed; thus, this is more precise that considering *reading time = timestamp closed - timestamp opened* but now one must stitch together multiple reading sessions to figure out something like [reading macro sessions](https://github.com/zeeguu-ecosystem/DB-Examples/blob/master/python-analysis/macro_session.py) that can be used in estimating the actual reading time for an article. 
+
 * **user\_exercise\_session** - same as reading session, but computed for exercises
 
 
