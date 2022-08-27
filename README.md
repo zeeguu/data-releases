@@ -6,6 +6,11 @@
 
 ## Version Details
 
+### 2022-06-04
+* 648 active users since 2021
+* 1368 active userse since 2016
+
+
 ### 2021-01-06
 
 * 497 users active in more than 10 distinct days in 2021
