@@ -3,8 +3,8 @@
 ## Contents
 - [About](#about)
 - [Importing the Data from the Command Line](#importing-the-data-from-the-command-line)
-- [Versions](#versions)
 - [Running Python Analyses](#running-python-analyses)
+- [Versions](#versions)
 - [Database Description](#database-description)
 
 ## About
@@ -21,6 +21,11 @@ mysql -uroot -p -h localhost zeeguu_test < zeeguu_anonymized-2021-01-06.sql
 
 Once the database is imported in MySQL DB server you can run queries on the database. Example SQL queries are available [in the Zeeguu-API repository](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/tools/sql)
 
+
+
+## Running Python Analyses
+
+To analyze the data from Python see [PYTHON_ANALYSIS.md](./PYTHON_ANALYSIS.md). 
 
 
 ## Versions
@@ -42,9 +47,6 @@ Once the database is imported in MySQL DB server you can run queries on the data
 
 
 
-## Running Python Analyses
-
-To analyze the data from Python see [PYTHON_ANALYSIS.md](./PYTHON_ANALYSIS.md). 
 
 
 ## Database Description
