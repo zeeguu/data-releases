@@ -2,8 +2,8 @@
 
 ## Contents
 - [About](#about)
-- [Versions](#versions)
 - [Importing the Data from the Command Line](#importing-the-data-from-the-command-line)
+- [Versions](#versions)
 - [Running Python Analyses](#running-python-analyses)
 - [Database Description](#database-description)
 
@@ -25,12 +25,12 @@ Once the database is imported in MySQL DB server you can run queries on the data
 
 ## Versions
 
-### 2022-06-04
+#### 2022-06-04
 * 648 active users since 2021
 * 1368 active userse since 2016
 
 
-### 2021-01-06
+#### 2021-01-06
 
 * 497 users active in more than 10 distinct days in 2021
 * 1097 users active in more than 10 distinct days since 2016
