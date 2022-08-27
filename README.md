@@ -2,14 +2,26 @@
 
 ## Contents
 - [About](#about)
-- [Database Description](#database-description)
 - [Versions](#versions)
 - [Importing the Data from the Command Line](#importing-the-data-from-the-command-line)
 - [Running Python Analyses](#running-python-analyses)
+- [Database Description](#database-description)
 
 ## About
 
 Here we publish and plan to store MySQL dumps from the Zeeguu project. 
+
+## Importing the Data from the Command Line
+
+[on a Linux or Mac] Clone this repository. Then from within the Data-Releases folder, run the following: 
+````
+unzip zeeguu_anonymized-2021-01-06.sql.zip
+mysql -uroot -p -h localhost zeeguu_test < zeeguu_anonymized-2021-01-06.sql
+````
+
+Once the database is imported in MySQL DB server you can run queries on the database. Example SQL queries are available [in the Zeeguu-API repository](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/tools/sql)
+
+
 
 ## Versions
 
@@ -29,6 +41,18 @@ Here we publish and plan to store MySQL dumps from the Zeeguu project.
 * there seems to be a bug where TRANSLATE TEXT does not have the translated text for more recent entries; this should not be a problem because the information should be retrievable from the bookmark table
 
 
+
+## Running Python Analyses
+
+After you have [imported the database](#importing-the-database) you have to export the ZEEGUU_CONFIG envvar like below: 
+
+````
+export ZEEGUU_CONFIG=./zeeguu-api/default_api.cfg
+````
+
+Then, to analyze the data from Python using the `zeeguu.core.model` [API](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/zeeguu/core/model) see [PYTHON_ANALYSIS.md](./PYTHON_ANALYSIS.md). 
+
+
 ## Database Description
 
 * **user** - info about a user 
@@ -42,27 +66,5 @@ Here we publish and plan to store MySQL dumps from the Zeeguu project.
 * **user\_exercise\_session** - same as reading session, but computed for exercises
 
 
-
-## Importing the Data from the Command Line
-
-[on a Linux or Mac] Clone this repository. Then from within the Data-Releases folder, run the following: 
-````
-unzip zeeguu_anonymized-2021-01-06.sql.zip
-mysql -uroot -p -h localhost zeeguu_test < zeeguu_anonymized-2021-01-06.sql
-````
-
-Once the database is imported in MySQL DB server you can run queries on the database. Example SQL queries are available [in the Zeeguu-API repository](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/tools/sql)
-
-
-
-## Running Python Analyses
-
-After you have [imported the database](#importing-the-database) you have to export the ZEEGUU_CONFIG envvar like below: 
-
-````
-export ZEEGUU_CONFIG=./zeeguu-api/default_api.cfg
-````
-
-Then, to analyze the data from Python using the `zeeguu.core.model` [API](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/zeeguu/core/model) see [PYTHON_ANALYSIS.md](./PYTHON_ANALYSIS.md). 
 
 
