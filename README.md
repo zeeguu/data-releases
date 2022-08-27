@@ -25,16 +25,26 @@
 * **user\_activity\_data** - logs events relevant for understanding users interaction with texts and exercises (and the platform in general)
 	* interactions in the article reader are prefixed with UMR (e.g. UMR - TRANSLATE TEXT);
 
-* **user\_reading\_session** - duration of a continuous interaction wit the reader; duration is in ms; sessions are closed if a user does not interact with a text for 2min
+* **user\_reading\_session** - this is our attempt at inferring the time spent while reading an article; the current implementation takes as input events that suggest [user interactions](https://github.com/zeeguu-ecosystem/zeeguu-api/blob/master/zeeguu/core/model/user_reading_session.py) with the article (article open, translation, speech, scroll, mouse move, etc.) and as long as the user is active, considers the user involved in a **reading session**. There is a timeout of 2min: if the user did not interact with the article in the reader for 2min, the session is closed; thus, this is more precise that considering *reading time = timestamp closed - timestamp opened* but now one must stitch together multiple reading sessions to figure out something like [reading macro sessions](https://github.com/zeeguu-ecosystem/DB-Examples/blob/master/python-analysis/macro_session.py) that can be used in estimating the actual reading time for an article. 
+
 * **user\_exercise\_session** - same as reading session, but computed for exercises
 
 
 ## How to use
 
 * Import to a local MySQL DB, and run queries on it. Some example SQL queries are available [in the Zeeguu-API repository](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/tools/sql)
-* To analyze the data from Python using the `zeeguu.core.model` [API](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/zeeguu/core/model) see [PYTHON_README.md](./PYTHON_README.md). 
+* To analyze the data from Python using the `zeeguu.core.model` [API](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/zeeguu/core/model) see [PYTHON_ANALYSIS.md](./PYTHON_ANALYSIS.md). 
 
 
+## Importing the DB dump on a Mac with Mysql Installed
+````
+unzip zeeguu_anonymized-2021-01-06.sql.zip
+mysql -uroot -p -h localhost zeeguu_test < zeeguu_anonymized-2021-01-06.sql
+````
 
+## Set environment variable to config file
+````
+export ZEEGUU_CONFIG=./zeeguu-api/default_api.cfg
+````
 
 
