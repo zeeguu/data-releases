@@ -41,9 +41,9 @@ This has been tested on OS X but should work on Linux too. It requires you to ha
 
 1. Export the ZEEGUU_CONFIG envvar like below: 
 
-````
-export ZEEGUU_CONFIG=./zeeguu-api/default_api.cfg
-````
+    ````
+    export ZEEGUU_CONFIG=./zeeguu-api/default_api.cfg
+    ````
 
 
 1. Change to the `/python-analysis` folder and test that some of the simple analyses there work
