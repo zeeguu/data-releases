@@ -4,7 +4,7 @@
 - [About](#about)
 - [Database Description](#database-description)
 - [Version Details](#version-details)
-- [Importing the Database](#importing-the-database)
+- [Importing the Data from the Command Line](#importing-the-data-from-the-command-line)
 - [Running Python Analyses](#running-python-analyses)
 
 ## About
@@ -43,9 +43,9 @@ Here we publish not-very-regularly MySQL dumps from the Zeeguu project
 
 
 
-## Importing the Database
+## Importing the Data from the Command Line
 
-Run the following on a Linux or Mac: 
+[on a Linux or Mac] Clone this repository. Then from within the Data-Releases folder, run the following: 
 ````
 unzip zeeguu_anonymized-2021-01-06.sql.zip
 mysql -uroot -p -h localhost zeeguu_test < zeeguu_anonymized-2021-01-06.sql
