@@ -1,8 +1,15 @@
-# Anonymized Database Dumps
+# The Zeeguu Database Dumps
 
+## Contents
+- [About](#about)
+- [Database Description](#database-description)
+- [Version Details](#version-details)
+- [Importing the Database](#importing-the-database)
+- [Running Python Analyses](#running-python-analyses)
 
-* from the Zeeguu project
-* in SQL format
+## About
+
+Here we publish not-very-regularly MySQL dumps from the Zeeguu project
 
 ## Version Details
 
@@ -22,7 +29,7 @@
 * there seems to be a bug where TRANSLATE TEXT does not have the translated text for more recent entries; this should not be a problem because the information should be retrievable from the bookmark table
 
 
-## Main tables
+## Database Description
 
 * **user** - info about a user 
 * **article** - info about an article, including fk_difficulty - the difficulty that's presented in the UI; language 
@@ -35,21 +42,25 @@
 * **user\_exercise\_session** - same as reading session, but computed for exercises
 
 
-## How to use
 
-* Import to a local MySQL DB, and run queries on it. Some example SQL queries are available [in the Zeeguu-API repository](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/tools/sql)
-* To analyze the data from Python using the `zeeguu.core.model` [API](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/zeeguu/core/model) see [PYTHON_ANALYSIS.md](./PYTHON_ANALYSIS.md). 
+## Importing the Database
 
-
-## Importing the DB dump on a Mac with Mysql Installed
+Run the following on a Linux or Mac: 
 ````
 unzip zeeguu_anonymized-2021-01-06.sql.zip
 mysql -uroot -p -h localhost zeeguu_test < zeeguu_anonymized-2021-01-06.sql
 ````
 
-## Set environment variable to config file
+Once the database is imported in MySQL DB server you can run queries on the database. Example SQL queries are available [in the Zeeguu-API repository](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/tools/sql)
+
+
+
+## Running Python Analyses
+
+First import the DB: 
 ````
 export ZEEGUU_CONFIG=./zeeguu-api/default_api.cfg
 ````
+* To analyze the data from Python using the `zeeguu.core.model` [API](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/zeeguu/core/model) see [PYTHON_ANALYSIS.md](./PYTHON_ANALYSIS.md). 
 
 
