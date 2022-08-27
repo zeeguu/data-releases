@@ -44,13 +44,7 @@ Once the database is imported in MySQL DB server you can run queries on the data
 
 ## Running Python Analyses
 
-After you have [imported the database](#importing-the-database) you have to export the ZEEGUU_CONFIG envvar like below: 
-
-````
-export ZEEGUU_CONFIG=./zeeguu-api/default_api.cfg
-````
-
-Then, to analyze the data from Python using the `zeeguu.core.model` [API](https://github.com/zeeguu-ecosystem/zeeguu-api/tree/master/zeeguu/core/model) see [PYTHON_ANALYSIS.md](./PYTHON_ANALYSIS.md). 
+To analyze the data from Python see [PYTHON_ANALYSIS.md](./PYTHON_ANALYSIS.md). 
 
 
 ## Database Description
