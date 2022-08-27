@@ -9,7 +9,7 @@
 
 ## About
 
-Here we publish not-very-regularly MySQL dumps from the Zeeguu project
+Here we publish and plan to store MySQL dumps from the Zeeguu project. 
 
 ## Version Details
 
