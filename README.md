@@ -3,7 +3,7 @@
 ## Contents
 - [About](#about)
 - [Database Description](#database-description)
-- [Version Details](#version-details)
+- [Versions](#versions)
 - [Importing the Data from the Command Line](#importing-the-data-from-the-command-line)
 - [Running Python Analyses](#running-python-analyses)
 
@@ -11,7 +11,7 @@
 
 Here we publish and plan to store MySQL dumps from the Zeeguu project. 
 
-## Version Details
+## Versions
 
 ### 2022-06-04
 * 648 active users since 2021
