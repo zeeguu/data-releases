@@ -30,6 +30,9 @@ To analyze the data from Python see [PYTHON_ANALYSIS.md](./PYTHON_ANALYSIS.md).
 
 ## Versions
 
+#### 2022-09-01 (September'22 Release)
+* a release to include all the data for the studies of Emma & Frida, Gustav & Jonas
+
 #### 2022-06-04
 * 648 active users since 2021
 * 1368 active userse since 2016
