@@ -15,6 +15,7 @@ Here we publish and plan to store MySQL dumps from the Zeeguu project.
 
 [on a Linux or Mac] Clone this repository. Then from within the Data-Releases folder, run the following: 
 ````
+brew install git-lfs
 unzip zeeguu_anonymized-2021-01-06.sql.zip
 mysql -uroot -p -h localhost zeeguu_test < zeeguu_anonymized-2021-01-06.sql
 ````
