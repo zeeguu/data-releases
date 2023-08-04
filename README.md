@@ -31,6 +31,9 @@ To analyze the data from Python see [PYTHON_ANALYSIS.md](./PYTHON_ANALYSIS.md).
 
 ## Versions
 
+#### 2023-08-04
+* release for Tiago's thesis
+
 #### 2022-05-05
 * 859 users since 2021 (183 new users since the september data dump)
 
