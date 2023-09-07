@@ -9,7 +9,11 @@
 
 ## About
 
-Here we publish and plan to store MySQL dumps from the Zeeguu project. 
+Here we publish anonymized database dumps from the Zeeguu project. 
+
+The data is formatted as sql files, exported from MySQL with the help of the mysqldump utility. 
+To load this data locally you need a MySQL database installed and the next section explains how to import it using the mysql command line tool. 
+
 
 ## Importing the Data from the Command Line
 
