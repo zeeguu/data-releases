@@ -1,4 +1,4 @@
-# The Zeeguu Database Dumps
+# Zeeguu Anonymized Data Releases
 
 ## Contents
 - [About](#about)
