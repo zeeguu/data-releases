@@ -67,6 +67,14 @@ To analyze the data from Python see [PYTHON_ANALYSIS.md](./PYTHON_ANALYSIS.md).
 
 ### user
 - info about a user
+- native_language_id - forein key to the `languages` table - is selected by the user in preferences, it's the language that they prefer the translations to be provided in
+- learned_language_id - the language they are reading / exercising in
+
+## user_language
+- table tracking user's self-declared expertise in various languages
+- contains one entry per (user x language) pair; e.g. `select * from user_language where user_id=534` will result in multiple entries;
+- `cefr_level` column is the self-declared expertise of user with `user_id` in the corresponding language `language_id`
+- info here has to be joined with `user.learned_language_id` to get the self-declared user level in the learned language 
 
 ### article
 - info about an article, including fk_difficulty - the difficulty that's presented in the UI; language
